@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { observalbe } from 'mobx';
+import { observable } from 'mobx';
 import { observer } from 'mobx-react'
 
 @observer class App extends Component {
