@@ -2,24 +2,32 @@ import React, { Component } from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react'
 
-@observer class App extends Component {
-  @observable count = 0;
+export const appState = observable({
+  count: 0
+});
 
+appState.handleIncrement = function() {
+  this.count++;
+}
+appState.handleDecrement = function() {
+  this.count--;
+}
+
+@observer class App extends Component {
   render() {
     return (
       <div className="App">
-        Counter: {this.count} <br />
+        Counter: {this.props.store.count} <br />
         <button onClick={this.handleIncrement}>+</button>
         <button onClick={this.handleDecrement}>-</button>
       </div>
     );
   }
-
   handleIncrement = () => {
-    this.count++;
+    this.props.store.handleIncrement();
   }
   handleDecrement = () => {
-    this.count--;
+    this.props.store.handleDecrement();
   }
 }
 
